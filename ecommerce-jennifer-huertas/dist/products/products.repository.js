@@ -1,0 +1,102 @@
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ProductsRepository = void 0;
+const common_1 = require("@nestjs/common");
+let ProductsRepository = class ProductsRepository {
+    products = [
+        {
+            id: 1,
+            name: "Teclado Mecánico RGB",
+            description: "Teclado con switches blue y retroiluminación personalizada.",
+            price: 75.99,
+            stock: true,
+            imgUrl: "https://example.com/images/teclado.jpg"
+        },
+        {
+            id: 2,
+            name: "Ratón Gaming Inalámbrico",
+            description: "Sensor óptico de 16000 DPI y batería de larga duración.",
+            price: 45.50,
+            stock: true,
+            imgUrl: "https://example.com/images/raton.jpg"
+        },
+        {
+            id: 3,
+            name: "Monitor 27'' 4K",
+            description: "Panel IPS con resolución Ultra HD y bordes ultra delgados.",
+            price: 299.99,
+            stock: false,
+            imgUrl: "https://example.com/images/monitor.jpg"
+        },
+        {
+            id: 4,
+            name: "Auriculares Noise Cancelling",
+            description: "Cancelación de ruido activa y sonido de alta fidelidad.",
+            price: 120.00,
+            stock: true,
+            imgUrl: "https://example.com/images/auriculares.jpg"
+        },
+        {
+            id: 5,
+            name: "Alfombrilla XL",
+            description: "Superficie de microfibra optimizada para todo tipo de sensores.",
+            price: 15.99,
+            stock: true,
+            imgUrl: "https://example.com/images/alfombrilla.jpg"
+        },
+        {
+            id: 6,
+            name: "Silla Ergonómica Pro",
+            description: "Soporte lumbar ajustable y materiales transpirables.",
+            price: 185.00,
+            stock: true,
+            imgUrl: "https://example.com/images/silla.jpg"
+        },
+        {
+            id: 7,
+            name: "Webcam 1080p",
+            description: "Micrófono estéreo integrado y corrección de luz automática.",
+            price: 55.25,
+            stock: false,
+            imgUrl: "https://example.com/images/webcam.jpg"
+        },
+        {
+            id: 8,
+            name: "Disco Duro Externo 2TB",
+            description: "Conexión USB 3.0 de alta velocidad y diseño compacto.",
+            price: 89.99,
+            stock: true,
+            imgUrl: "https://example.com/images/disco.jpg"
+        },
+        {
+            id: 9,
+            name: "Lámpara de Escritorio LED",
+            description: "Diferentes niveles de brillo y carga inalámbrica para móvil.",
+            price: 34.00,
+            stock: true,
+            imgUrl: "https://example.com/images/lampara.jpg"
+        },
+        {
+            id: 10,
+            name: "Soporte para Portátil",
+            description: "Aluminio resistente con 6 ángulos de inclinación ajustables.",
+            price: 22.50,
+            stock: true,
+            imgUrl: "https://example.com/images/soporte.jpg"
+        }
+    ];
+    findAll() {
+        return this.products;
+    }
+};
+exports.ProductsRepository = ProductsRepository;
+exports.ProductsRepository = ProductsRepository = __decorate([
+    (0, common_1.Injectable)()
+], ProductsRepository);
+//# sourceMappingURL=products.repository.js.map
