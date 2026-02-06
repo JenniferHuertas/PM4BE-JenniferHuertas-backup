@@ -18,19 +18,22 @@ let UsersService = class UsersService {
         this.usersRepository = usersRepository;
     }
     create(createUserDto) {
-        return 'This action adds a new user';
+        return this.usersRepository.save(createUserDto);
     }
-    findAll() {
-        return this.usersRepository.findAll();
+    findAll(page, limit) {
+        const users = this.usersRepository.findAll();
+        const start = (page - 1) * limit;
+        const end = start + limit;
+        return users.slice(start, end);
     }
     findOne(id) {
-        return `This action returns a #${id} user`;
+        return this.usersRepository.findOne(id);
     }
     update(id, updateUserDto) {
-        return `This action updates a #${id} user`;
+        return this.usersRepository.update(id, updateUserDto);
     }
     remove(id) {
-        return `This action removes a #${id} user`;
+        return this.usersRepository.delete(id);
     }
 };
 exports.UsersService = UsersService;

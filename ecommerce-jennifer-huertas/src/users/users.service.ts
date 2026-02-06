@@ -11,8 +11,11 @@ export class UsersService {
     return this.usersRepository.save(createUserDto);
   }
 
-  findAll() {
-    return this.usersRepository.findAll();
+  findAll(page: number, limit: number) {
+    const users = this.usersRepository.findAll();
+    const  start = (page - 1) * limit;
+    const end = start + limit; 
+    return users.slice(start, end);
   }
 
   findOne(id: number) {

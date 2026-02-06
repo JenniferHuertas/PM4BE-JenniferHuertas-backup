@@ -4,9 +4,18 @@ import { UsersRepository } from './users.repository';
 export declare class UsersService {
     private readonly usersRepository;
     constructor(usersRepository: UsersRepository);
-    create(createUserDto: CreateUserDto): string;
-    findAll(): import("./entities/user.entity").User[];
-    findOne(id: number): string;
-    update(id: number, updateUserDto: UpdateUserDto): string;
-    remove(id: number): string;
+    create(createUserDto: CreateUserDto): {
+        id: number;
+        email: string;
+        name: string;
+        password: string;
+        address: string;
+        phone: string;
+        country: string;
+        city: string;
+    };
+    findAll(page: number, limit: number): import("./entities/user.entity").User[];
+    findOne(id: number): import("./entities/user.entity").User | undefined;
+    update(id: number, updateUserDto: UpdateUserDto): import("./entities/user.entity").User | "user not found";
+    remove(id: number): import("./entities/user.entity").User[];
 }

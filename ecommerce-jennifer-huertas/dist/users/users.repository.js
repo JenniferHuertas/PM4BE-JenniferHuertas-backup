@@ -109,6 +109,34 @@ let UsersRepository = class UsersRepository {
     findAll() {
         return this.users;
     }
+    findOne(id) {
+        return this.users.find((user) => id === user.id);
+    }
+    save(user) {
+        const newUser = {
+            ...user,
+            id: this.users[this.users.length - 1].id + 1,
+        };
+        this.users.push(newUser);
+        return newUser;
+    }
+    update(id, data) {
+        const user = this.users.find((user) => id === user.id);
+        const index = this.users.findIndex((user) => id === user.id);
+        if (!user)
+            return 'user not found';
+        const updatedUser = {
+            ...user,
+            ...data,
+        };
+        this.users[index] = updatedUser;
+        return updatedUser;
+    }
+    delete(id) {
+        const deleteUser = this.users.filter((user) => id !== user.id);
+        this.users = deleteUser;
+        return this.users;
+    }
 };
 exports.UsersRepository = UsersRepository;
 exports.UsersRepository = UsersRepository = __decorate([

@@ -108,7 +108,7 @@ export class UsersRepository {
   }
 
   findOne(id: number) {
-    this.users.find((user) => id === user.id);
+    return this.users.find((user) => id === user.id);
   }
 
   save(user: CreateUserDto) {
