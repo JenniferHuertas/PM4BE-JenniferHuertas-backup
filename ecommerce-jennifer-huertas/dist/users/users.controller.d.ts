@@ -4,18 +4,9 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
-    create(createUserDto: CreateUserDto): {
-        id: number;
-        email: string;
-        name: string;
-        password: string;
-        address: string;
-        phone: string;
-        country: string;
-        city: string;
-    };
-    findAll(page: string, limit: string): import("./entities/user.entity").User[];
-    findOne(id: string): import("./entities/user.entity").User | undefined;
-    update(id: string, updateUserDto: UpdateUserDto): import("./entities/user.entity").User | "user not found";
-    remove(id: string): import("./entities/user.entity").User[];
+    create(createUserDto: CreateUserDto): Promise<import("./entities/user.entity").User>;
+    findAll(page: string, limit: string): Promise<import("./entities/user.entity").User[]>;
+    findOne(id: string): Promise<import("./entities/user.entity").User | null>;
+    update(id: string, updateUserDto: UpdateUserDto): Promise<import("./entities/user.entity").User | null>;
+    remove(id: string): Promise<import("typeorm").DeleteResult>;
 }

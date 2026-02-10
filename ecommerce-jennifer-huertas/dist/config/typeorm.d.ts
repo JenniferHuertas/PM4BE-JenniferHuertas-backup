@@ -1,3 +1,4 @@
+import { DataSource } from 'typeorm';
 export declare const config: {
     type: string;
     host: string | undefined;
@@ -10,6 +11,8 @@ export declare const config: {
     logging: string[];
     entities: string[];
     subscribers: never[];
+    migrations: string[];
+    autoLoadEntities: boolean;
 };
 declare const _default: (() => {
     type: string;
@@ -23,6 +26,8 @@ declare const _default: (() => {
     logging: string[];
     entities: string[];
     subscribers: never[];
+    migrations: string[];
+    autoLoadEntities: boolean;
 }) & import("@nestjs/config").ConfigFactoryKeyHost<{
     type: string;
     host: string | undefined;
@@ -35,5 +40,8 @@ declare const _default: (() => {
     logging: string[];
     entities: string[];
     subscribers: never[];
+    migrations: string[];
+    autoLoadEntities: boolean;
 }>;
 export default _default;
+export declare const connectionSource: DataSource;

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.config = void 0;
+exports.connectionSource = exports.config = void 0;
+const typeorm_1 = require("typeorm");
 const envs_1 = require("./envs");
 const config_1 = require("@nestjs/config");
 exports.config = {
@@ -13,8 +14,11 @@ exports.config = {
     synchronize: envs_1.DB_SYNC,
     dropSchema: envs_1.DB_DROP,
     logging: ['error'],
-    entities: ['src/entities/**/*.ts'],
+    entities: ['dist/**/*.entity{.ts,.js}'],
     subscribers: [],
+    migrations: ['dist/migrations/*{.ts,.js}'],
+    autoLoadEntities: true
 };
 exports.default = (0, config_1.registerAs)('typeorm', () => exports.config);
+exports.connectionSource = new typeorm_1.DataSource(exports.config);
 //# sourceMappingURL=typeorm.js.map

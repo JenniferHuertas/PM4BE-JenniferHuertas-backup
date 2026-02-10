@@ -1,10 +1,12 @@
+import { Orders } from '../../orders/entities/order.entity';
 export declare class User {
-    id: number;
+    id: string;
     email: string;
     name: string;
     password: string;
     address: string;
-    phone: string;
-    country?: string;
-    city?: string;
+    phone: number;
+    country: string;
+    city: string;
+    order?: Orders[];
 }

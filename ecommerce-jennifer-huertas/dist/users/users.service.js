@@ -8,37 +8,45 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersService = void 0;
 const common_1 = require("@nestjs/common");
-const usersOld_repository_1 = require("./usersOld.repository");
+const typeorm_1 = require("@nestjs/typeorm");
+const typeorm_2 = require("typeorm");
+const user_entity_1 = require("./entities/user.entity");
 let UsersService = class UsersService {
     usersRepository;
     constructor(usersRepository) {
         this.usersRepository = usersRepository;
     }
-    create(createUserDto) {
-        return this.usersRepository.save(createUserDto);
+    async create(createUserDto) {
+        const newUser = this.usersRepository.create(createUserDto);
+        return await this.usersRepository.save(newUser);
     }
-    findAll(page, limit) {
-        const users = this.usersRepository.findAll();
-        const start = (page - 1) * limit;
-        const end = start + limit;
-        return users.slice(start, end);
+    async findAll(page, limit) {
+        return await this.usersRepository.find({
+            take: limit,
+            skip: (page - 1) * limit,
+        });
     }
-    findOne(id) {
-        return this.usersRepository.findOne(id);
+    async findOne(id) {
+        return await this.usersRepository.findOneBy({ id });
     }
-    update(id, updateUserDto) {
-        return this.usersRepository.update(id, updateUserDto);
+    async update(id, updateUserDto) {
+        await this.usersRepository.update(id, updateUserDto);
+        return await this.usersRepository.findOneBy({ id });
     }
-    remove(id) {
-        return this.usersRepository.delete(id);
+    async remove(id) {
+        return await this.usersRepository.delete(id);
     }
 };
 exports.UsersService = UsersService;
 exports.UsersService = UsersService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [usersOld_repository_1.UsersRepository])
+    __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
+    __metadata("design:paramtypes", [typeorm_2.Repository])
 ], UsersService);
 //# sourceMappingURL=users.service.js.map

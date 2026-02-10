@@ -1,3 +1,4 @@
+import { DataSource, DataSourceOptions } from 'typeorm';
 import {
   DB_DATABASE,
   DB_DROP,
@@ -19,10 +20,14 @@ export const config = {
   synchronize: DB_SYNC,
   dropSchema: DB_DROP,
   logging: ['error'],
-  entities: ['src/entities/**/*.ts'],
+  entities: ['dist/**/*.entity{.ts,.js}'],
   subscribers: [],
+  migrations: ['dist/migrations/*{.ts,.js}'],
+  autoLoadEntities: true
 };
 
 export default registerAs('typeorm', () => config);
+
+export const connectionSource = new DataSource(config as DataSourceOptions);
 
 

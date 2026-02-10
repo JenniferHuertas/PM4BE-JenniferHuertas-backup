@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm"
-import { Products } from '../../products/entities/product.entity';
+import { Product } from '../../products/entities/product.entity';
 
 @Entity({
     name: 'CATEGORIES',
@@ -13,7 +13,7 @@ export class Categories {
     @Column({type: "varchar", length: 50, nullable: false})
     name: string
 
-    @ManyToOne( () => Products, products => products.category)
-    products: Products[]
+    @ManyToOne( () => Product, products => products.category)
+    products: Product[]
 
 }

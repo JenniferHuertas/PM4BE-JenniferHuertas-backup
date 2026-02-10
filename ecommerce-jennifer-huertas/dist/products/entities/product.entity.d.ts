@@ -1,8 +1,12 @@
+import { Categories } from '../../categories/entities/category.entity';
+import { OrderDetails } from '../../orders/entities/orderDetails.entity';
 export declare class Product {
-    id: number;
+    id: string;
     name: string;
     description: string;
     price: number;
-    stock: boolean;
-    imgUrl: string;
+    stock: number;
+    imgUrl?: string;
+    category?: Categories[];
+    orderDetails?: OrderDetails[];
 }

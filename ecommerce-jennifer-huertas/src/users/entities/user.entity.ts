@@ -1,14 +1,3 @@
-// export class User {
-// id:number;
-// email: string;
-// name: string;
-// password: string;
-// address: string;
-// phone: string;
-// country?: string;
-// city?: string;
-// }
-
 import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm"
 import { Orders } from '../../orders/entities/order.entity';
 
@@ -16,7 +5,7 @@ import { Orders } from '../../orders/entities/order.entity';
     name: 'USERS',
 })
 
-export class Users {
+export class User {
 
     @PrimaryGeneratedColumn('uuid')
     id: string
@@ -42,7 +31,7 @@ export class Users {
     @Column({type: "varchar", length: 50})
     city: string
 
-    @OneToMany( () => Orders, order => order.user)
-    appointments: Orders[]
+    @OneToMany(() => Orders, order => order.user)
+    order?: Orders[]
 
 }

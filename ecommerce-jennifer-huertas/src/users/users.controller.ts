@@ -6,34 +6,33 @@ import { AuthGuard } from 'src/auth/guards/auth.guard';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService) { }
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
+  async create(@Body() createUserDto: CreateUserDto) {
+    return await this.usersService.create(createUserDto);
   }
 
   @Get()
   @UseGuards(AuthGuard)
-  findAll(@Query('page') page:string, @Query('limit') limit:string) {
-    if (page && limit) {
-      return this.usersService.findAll(+page, +limit);
-    }
-    return this.usersService.findAll(1, 5);
+  async findAll(@Query('page') page: string, @Query('limit') limit: string) {
+    const pageNumber = page ? +page : 1;
+    const limitNumber = limit ? +limit : 5;
+    return await this.usersService.findAll(pageNumber, limitNumber);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.usersService.findOne(id);
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
+  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    return await this.usersService.update(id, updateUserDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return await this.usersService.remove(id);
   }
 }

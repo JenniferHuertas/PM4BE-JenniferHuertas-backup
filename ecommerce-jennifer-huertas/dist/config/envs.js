@@ -9,5 +9,5 @@ exports.DB_USERNAME = process.env.DB_USERNAME;
 exports.DB_PASSWORD = process.env.DB_PASSWORD;
 exports.DB_DATABASE = process.env.DB_DATABASE;
 exports.DB_SYNC = process.env.DB_SYNC ? process.env.DB_SYNC === "true" : false;
-exports.DB_DROP = process.env.DB_DROP ? process.env.DB_DROP === "true" : false;
+exports.DB_DROP = process.env.DB_DROP ? process.env.DB_DROP === "false" : false;
 //# sourceMappingURL=envs.js.map

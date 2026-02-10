@@ -1,6 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm"
 import { OrderDetails } from './orderDetails.entity';
-import { Users } from '../../users/entities/user.entity';
+import { User } from '../../users/entities/user.entity';
 
 
 @Entity({
@@ -19,9 +19,9 @@ export class Orders {
     @JoinColumn({ name: 'order_detail_id' })
     orderDetails: OrderDetails;
 
-    @ManyToOne(() => Users, user => user.order)
+    @ManyToOne(() => User, user => user.order)
     @JoinColumn({ name: 'user_id' })
-    user: Users;
+    user: User;
 
 
 

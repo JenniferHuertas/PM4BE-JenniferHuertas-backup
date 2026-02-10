@@ -1,12 +1,3 @@
-// export class Product {
-// id:number;
-// name: string;
-// description: string;
-// price: number;
-// stock: boolean;
-// imgUrl: string;
-// }
-
 import { Column, Entity, JoinColumn, ManyToMany, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm"
 import { Categories } from '../../categories/entities/category.entity';
 import { OrderDetails } from '../../orders/entities/orderDetails.entity';
@@ -15,7 +6,7 @@ import { OrderDetails } from '../../orders/entities/orderDetails.entity';
     name: 'PRODUCTS',
 })
 
-export class Products {
+export class Product {
 
     @PrimaryGeneratedColumn('uuid')
     id: string
@@ -37,22 +28,8 @@ export class Products {
 
     @OneToMany( () => Categories, category => category.products)
     @JoinColumn({name: 'category_id'})
-    category: Categories[]
+    category?: Categories[]
 
     @ManyToMany( () => OrderDetails, orderDetails => orderDetails.products)
-    orderDetails: OrderDetails[]
-
-
-    // @OneToOne( () => Credential, { cascade: true })
-    // @JoinColumn()
-    // credentials: Credential
-
-    // @OneToMany( () => Appointment, appointment => appointment.user)
-    // appointments: Appointment[]
-
-    // @CreateDateColumn()
-    // createdAt?: Date
-
-    // @UpdateDateColumn()
-    // updatedAt?: Date
+    orderDetails?: OrderDetails[]
 }
