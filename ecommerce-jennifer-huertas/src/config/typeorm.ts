@@ -1,4 +1,3 @@
-import { DataSource } from 'typeorm';
 import {
   DB_DATABASE,
   DB_DROP,
@@ -8,8 +7,9 @@ import {
   DB_SYNC,
   DB_USERNAME,
 } from './envs';
+import { registerAs } from '@nestjs/config';
 
-export const AppDataSource = new DataSource({
+export const config = {
   type: 'postgres',
   host: DB_HOST,
   port: DB_PORT,
@@ -21,8 +21,8 @@ export const AppDataSource = new DataSource({
   logging: ['error'],
   entities: ['src/entities/**/*.ts'],
   subscribers: [],
-});
+};
 
-export const UserModel = AppDataSource.getRepository(User);
-export const CredentialModel = AppDataSource.getRepository(Credential);
-export const AppointmentModel = AppDataSource.getRepository(Appointment);
+export default registerAs('typeorm', () => config);
+
+
