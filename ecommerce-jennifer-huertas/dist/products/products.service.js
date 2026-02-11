@@ -11,43 +11,47 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProductsService = void 0;
 const common_1 = require("@nestjs/common");
+const data_json_1 = __importDefault(require("../data.json"));
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const product_entity_1 = require("./entities/product.entity");
+const category_entity_1 = require("../categories/entities/category.entity");
 let ProductsService = class ProductsService {
+    categoriesRepository;
     productsRepository;
-    constructor(productsRepository) {
+    constructor(categoriesRepository, productsRepository) {
+        this.categoriesRepository = categoriesRepository;
         this.productsRepository = productsRepository;
     }
-    async create(createProductDto) {
-        const newProduct = this.productsRepository.create(createProductDto);
-        return await this.productsRepository.save(newProduct);
-    }
-    async findAll() {
-        return await this.productsRepository.find();
-    }
-    async findOne(id) {
-        const product = await this.productsRepository.findOneBy({ id });
-        if (!product)
-            throw new common_1.NotFoundException(`Producto con ID ${id} no encontrado`);
-        return product;
-    }
-    async update(id, updateProductDto) {
-        await this.productsRepository.update(id, updateProductDto);
-        return await this.findOne(id);
-    }
-    async remove(id) {
-        const product = await this.findOne(id);
-        return await this.productsRepository.delete(id);
+    async seeder() {
+        const categories = await this.categoriesRepository.find();
+        const newProducts = data_json_1.default.map((product) => {
+            const category = categories.find((category) => product.category === category.name);
+            const newProduct = new product_entity_1.Product();
+            newProduct.name = product.name;
+            newProduct.description = product.description;
+            newProduct.price = product.price;
+            newProduct.imgUrl = product?.imgUrl;
+            newProduct.stock = product.stock;
+            newProduct.category = category;
+            return newProduct;
+        });
+        await this.productsRepository.upsert(newProducts, ['name']);
+        return "Products Added";
     }
 };
 exports.ProductsService = ProductsService;
 exports.ProductsService = ProductsService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(product_entity_1.Product)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(0, (0, typeorm_1.InjectRepository)(category_entity_1.Categories)),
+    __param(1, (0, typeorm_1.InjectRepository)(product_entity_1.Product)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository])
 ], ProductsService);
 //# sourceMappingURL=products.service.js.map

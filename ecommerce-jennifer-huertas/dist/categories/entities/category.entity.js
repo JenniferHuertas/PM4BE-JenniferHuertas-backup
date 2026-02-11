@@ -23,11 +23,11 @@ __decorate([
     __metadata("design:type", String)
 ], Categories.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "varchar", length: 50, nullable: false }),
+    (0, typeorm_1.Column)({ type: "varchar", length: 50, nullable: false, unique: true }),
     __metadata("design:type", String)
 ], Categories.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => product_entity_1.Product, products => products.category),
+    (0, typeorm_1.OneToMany)(() => product_entity_1.Product, (product) => product.category),
     __metadata("design:type", Array)
 ], Categories.prototype, "products", void 0);
 exports.Categories = Categories = __decorate([

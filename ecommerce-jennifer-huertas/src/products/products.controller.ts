@@ -8,30 +8,30 @@ import { AuthGuard } from 'src/auth/guards/auth.guard';
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
-  @Post()
-  async create(@Body() createProductDto: CreateProductDto) {
-    return await this.productsService.create(createProductDto);
+  @Post('seeder')
+  seeder() {
+    return this.productsService.seeder();
   }
 
-  @Get()
-  async findAll() {
-    return await this.productsService.findAll();
-  }
+  // @Get()
+  // async findAll() {
+  //   return await this.productsService.findAll();
+  // }
 
-  @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return await this.productsService.findOne(id);
-  }
+  // @Get(':id')
+  // async findOne(@Param('id') id: string) {
+  //   return await this.productsService.findOne(id);
+  // }
 
-  @Patch(':id')
-  @UseGuards(AuthGuard) 
-  async update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-    return await this.productsService.update(id, updateProductDto);
-  }
+  // @Patch(':id')
+  // @UseGuards(AuthGuard) 
+  // async update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
+  //   return await this.productsService.update(id, updateProductDto);
+  // }
 
-  @Delete(':id')
-  @UseGuards(AuthGuard) 
-  async remove(@Param('id') id: string) {
-    return await this.productsService.remove(id);
-  }
+  // @Delete(':id')
+  // @UseGuards(AuthGuard) 
+  // async remove(@Param('id') id: string) {
+  //   return await this.productsService.remove(id);
+  // }
 }

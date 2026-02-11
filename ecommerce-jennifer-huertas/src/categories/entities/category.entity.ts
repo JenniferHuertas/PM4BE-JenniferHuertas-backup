@@ -10,10 +10,10 @@ export class Categories {
     @PrimaryGeneratedColumn('uuid')
     id: string
 
-    @Column({type: "varchar", length: 50, nullable: false})
+    @Column({type: "varchar", length: 50, nullable: false, unique: true})
     name: string
 
-    @ManyToOne( () => Product, products => products.category)
+    @OneToMany( () => Product, (product) => product.category)
     products: Product[]
 
 }

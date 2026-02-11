@@ -29,7 +29,7 @@ __decorate([
     __metadata("design:type", String)
 ], Product.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "varchar", length: 50, nullable: false }),
+    (0, typeorm_1.Column)({ type: "varchar", length: 50, nullable: false, unique: true }),
     __metadata("design:type", String)
 ], Product.prototype, "name", void 0);
 __decorate([
@@ -49,9 +49,9 @@ __decorate([
     __metadata("design:type", String)
 ], Product.prototype, "imgUrl", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => category_entity_1.Categories, category => category.products),
+    (0, typeorm_1.ManyToOne)(() => category_entity_1.Categories, (category) => category.products),
     (0, typeorm_1.JoinColumn)({ name: 'category_id' }),
-    __metadata("design:type", Array)
+    __metadata("design:type", category_entity_1.Categories)
 ], Product.prototype, "category", void 0);
 __decorate([
     (0, typeorm_1.ManyToMany)(() => orderDetails_entity_1.OrderDetails, orderDetails => orderDetails.products),

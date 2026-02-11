@@ -7,6 +7,6 @@ export declare class Product {
     price: number;
     stock: number;
     imgUrl?: string;
-    category?: Categories[];
+    category?: Categories;
     orderDetails?: OrderDetails[];
 }
